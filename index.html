@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Forecast</title>
+  <!-- Bootstrap CSS CDN  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+  <!-- CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav id="nav" dclass="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Weather Dashboard</a>
+          </div>
+        </nav>
+<!--search city and adding to the list-->
+<div class="conteiner">
+    
+    <div slass="row">
+        <!--searching a city-->
+        <div class="col-4 city-search"> 
+            <h4 style="margin-top:10px">Search for a city: </h4>
+            <form style="margin:auto;max-width:300px">
+            <input class="cityname" type="text" placeholder="Search.." name="searchCity">
+            <button class="search-city" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <!--listing the cities-->
+        <div class="city-list"></div>
+        </div>
+
+        <!--weather information of the city choosen-->
+        <div class="col-8 city">
+            <div class="city-info"> A city </div>
+            <div class="weather-forecast"> forecast</div>
+        </div>
+    </div> 
+
+</div>
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Code to the JavaScript File -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+
