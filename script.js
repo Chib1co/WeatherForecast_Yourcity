@@ -49,9 +49,18 @@ $(".search-city").on("click", function(event) {
 
     $(".city-info").append(cityCurrent);
 
-    });
-  });
+    }); //ajax close
 
-  
+    let chosenCity = window.localStorage.getItem("cities") || [];
+    let cityList = $(".cityname").val;
 
-});
+    localStorage.setItem(JSON.stringify(chosenCity, cityList));
+
+
+
+
+  }); //onclick close
+
+
+
+});//document ready close
