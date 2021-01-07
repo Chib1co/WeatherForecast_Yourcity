@@ -65,17 +65,26 @@ $( document ).ready(function() {
   cityCurrent.append(placeName);
   //$(".city-info").append(nameOfCity);
 
+  let date   = new Date();
+    console.log(date)
+  let dateOfCity = date.toLocaleDateString("en-AU");
+  cityCurrent.append("  " + dateOfCity);
+
+ let currentWeather = response.list[0].weather[0].description;
+   console.log(currentWeather);
+  cityCurrent.append(currentWeather);
+
   let cityTemp = response.list[0].main.temp -273.15;
-  cityTempC = cityTemp.toFixed(2)
-  console.log(cityTempC);
+   cityTempC = cityTemp.toFixed(2)
+   console.log(cityTempC);
   cityCurrent.append(createDiv('Current Tempurature(C): ' + cityTempC));
 
   let cityWind = response.list[0].wind.speed;
-  console.log(cityWind);
+   console.log(cityWind);
   cityCurrent.append(createDiv('Current Wind :' + cityWind + ' km/h'));
 
   let cityHumidity = response.list[0].main.humidity;
-  console.log(cityHumidity);
+   console.log(cityHumidity);
   cityCurrent.append(createDiv('Current Humidity:' + cityHumidity + ' %'));
 
   //   UX index
@@ -84,6 +93,9 @@ $( document ).ready(function() {
   // cityCurrent.append('Current Humidity' + cityHumidity + ' %');
   resetDashboard();
   $(".city-info").append(cityCurrent);
+
+
+  
 
   }); //ajax close
 
