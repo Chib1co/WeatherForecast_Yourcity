@@ -68,7 +68,7 @@ $( document ).ready(function() {
   let date   = new Date();
     console.log(date)
   let dateOfCity = date.toLocaleDateString("en-AU");
-  cityCurrent.append("  " + dateOfCity);
+  cityCurrent.append(" (" + dateOfCity + ")");
 
  let currentWeather = response.list[0].weather[0].description;
    console.log(currentWeather);
@@ -95,7 +95,7 @@ $( document ).ready(function() {
   $(".city-info").append(cityCurrent);
 
 
-  
+
 
   }); //ajax close
 
