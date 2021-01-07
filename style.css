@@ -29,3 +29,13 @@ body{
 .city{
     float: right;
 }
+.cursor-pointer{
+    cursor: pointer;
+}
+
+/* .nameOfCity{
+    font-size: 28px;
+    font-weight: 100;
+    color: red;
+
+} */
