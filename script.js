@@ -103,18 +103,22 @@ $( document ).ready(function() {
   }).then(function(response){
       console.log(response);
    
-$("#day2").text("");
+
 for (let i = 0; i < response.list.length; i++) {
 if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
+  let eachDayWeather = $("<div>");
+  let eachDayDescription = $("<p>")
 
-  let dayTwoWeather= response.list[i].dt_txt
-  console.log(dayTwoWeather);
-  $("#day2").append(dayTwoWeather);
+  let dayTwoWeather= response.list[i].dt_txt ;
+  eachDayWeathere.text(dayTwoWeather);
+  
+  //eachDayWeather.append(dayTwoWeather);
+  console.log(eachDayWeather);
+  $("#5dayweather").append(eachDayWeather);
        
 }
   
 }
-let day2Weather = $("")
 
 
 
