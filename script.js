@@ -19,6 +19,7 @@ $( document ).ready(function() {
   return div
  };//create Div close
 
+
  function generateCityList() {
    // grab local storage city entries
    let cities = JSON.parse(window.localStorage.getItem("cities")) || [];
@@ -70,35 +71,55 @@ $( document ).ready(function() {
   let dateOfCity = date.toLocaleDateString("en-AU");
   cityCurrent.append(" (" + dateOfCity + ")");
 
- let currentWeather = response.list[0].weather[0].description;
+ let currentWeather = response.list[3].weather[0].description;
    console.log(currentWeather);
   cityCurrent.append(currentWeather);
 
-  let cityTemp = response.list[0].main.temp -273.15;
+  let cityTemp = response.list[3].main.temp -273.15;
    cityTempC = cityTemp.toFixed(2)
    console.log(cityTempC);
   cityCurrent.append(createDiv('Current Tempurature(C): ' + cityTempC));
 
-  let cityWind = response.list[0].wind.speed;
+  let cityWind = response.list[3].wind.speed;
    console.log(cityWind);
   cityCurrent.append(createDiv('Current Wind :' + cityWind + ' km/h'));
 
-  let cityHumidity = response.list[0].main.humidity;
+  let cityHumidity = response.list[3].main.humidity;
    console.log(cityHumidity);
   cityCurrent.append(createDiv('Current Humidity:' + cityHumidity + ' %'));
 
   //   UX index
-  // let cityHumidity = response.list[0].main.humidity;
+  // let cityHumidity = response.list[3].main.humidity;
   // console.log(cityHumidity);
   // cityCurrent.append('Current Humidity' + cityHumidity + ' %');
   resetDashboard();
   $(".city-info").append(cityCurrent);
+}); //ajax close
+
+// 5 days forecatse
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response){
+      console.log(response);
+   
+$("#day2").text("");
+for (let i = 0; i < response.list.length; i++) {
+if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
+
+  let dayTwoWeather= response.list[i].dt_txt
+  console.log(dayTwoWeather);
+  $("#day2").append(dayTwoWeather);
+       
+}
+  
+}
+let day2Weather = $("")
 
 
 
 
-  }); //ajax close
-
+}); //ajax2 close
  }//serchWeather close
 
 
