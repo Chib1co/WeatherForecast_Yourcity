@@ -110,11 +110,12 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   let fiveDaysWeather = $("<div>");
   fiveDaysWeather.attr("class", "#fivDaysWeather");
   
- console.log(response.list[i].dt_txt);
- let eachDayDate = $("<h3>");
- eachDayDate.text(response.list[i].dt_txt);
- console.log(eachDayDate);
- fiveDaysWeather.append(eachDayDate)
+
+//  let eachDayDate = $("<h3>");
+//  let nextDate = new Date().getDate();
+//  console.log(nextDate)
+//   fiveDaysWeather.append(eachDayDate)
+
 
   console.log(response.list[i].weather[0].description)
   let eachDayDescription = $("<p>")
@@ -123,8 +124,9 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
 
 
   let eachDayTemp = $("<p>")
-  //eachDayTempC = eachDayTemp.toFixed(2);
-  eachDayTemp.text(response.list[i].main.temp -273.15);
+  let eachDayTempC = response.list[i].main.temp -273.15
+  eachDayTemp.text(eachDayTempC.toFixed(2));
+  //eachDayTemp.text(response.list[i].main.temp -273.15);
   fiveDaysWeather.append(eachDayTemp);
 
   let eachDayHumidity = $("<p>")
