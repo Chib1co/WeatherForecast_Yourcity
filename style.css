@@ -3,7 +3,7 @@ body{
 }
     
     
-    #nav {
+#nav {
     width: 100%;
     display: inline-block;
     text-align: center;
@@ -23,7 +23,12 @@ body{
  
 }
 .city-list{
+    margin-top: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
     float: left;
+    border: ridge;
+    font-size: 22px;
 }
 
 .city{
@@ -31,11 +36,30 @@ body{
 }
 .cursor-pointer{
     cursor: pointer;
+   
 }
 
-#fivDaysWeather{
-    
+.city-info{
+    border: ridge;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
+ /* #fivedaysweather{
+     margin-top: 10px;
+    
+ } */
+
+ .card{
+     margin-right: 5px;
+     font-size: 12px;
+     background-color: skyblue;
+     
+ }
+ .titleFiveDays{
+     margin-top: 20px;
+ }
 
 /* .nameOfCity{
     font-size: 28px;
