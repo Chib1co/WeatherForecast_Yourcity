@@ -108,34 +108,39 @@ for (let i = 0; i < response.list.length; i++) {
 if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   
   let fiveDaysWeather = $("<div>");
+  fiveDaysWeather.attr("class", "#fivDaysWeather");
+  
+ console.log(response.list[i].dt_txt);
+ let eachDayDate = $("<h3>");
+ eachDayDate.text(response.list[i].dt_txt);
+ console.log(eachDayDate);
+ fiveDaysWeather.append(eachDayDate)
 
   console.log(response.list[i].weather[0].description)
-  let eachDayDescription = $("<h1>")
+  let eachDayDescription = $("<p>")
   eachDayDescription.text(response.list[i].weather[0].description);
   fiveDaysWeather.append(eachDayDescription);
-   
-  console.log(response.list[i].dt_txt);
-  let eachDayDate = $("<p>");
-  eachDayDate.text(response.list[i].dt_txt);
-  console.log(eachDayDate);
 
 
   let eachDayTemp = $("<p>")
+  //eachDayTempC = eachDayTemp.toFixed(2);
   eachDayTemp.text(response.list[i].main.temp -273.15);
+  fiveDaysWeather.append(eachDayTemp);
 
   let eachDayHumidity = $("<p>")
   eachDayHumidity.text(response.list[i].main.humidity);
+  fiveDaysWeather.append(eachDayHumidity);
 
  
 
-  let eachDayWeather = $(`<div>
-  <h1> The weather is ${eachDayDescription}. </h1>
-  <p> The temperature is ${eachDayTemp}. </p>
-  <p> The date is ${eachDayDate}</p>
-  <p> The humidity is ${eachDayHumidity}</p>
-  </div>`);
+  // let eachDayWeather = $(`<div>
+  // <h1> The weather is ${eachDayDescription}. </h1>
+  // <p> The temperature is ${eachDayTemp}. </p>
+  // <p> The date is ${eachDayDate}</p>
+  // <p> The humidity is ${eachDayHumidity}</p>
+  // </div>`);
 
-  $("#5daysweather").append(eachDayWeather);
+  $("#5daysweather").append(fiveDaysWeather);
        
 }
   
