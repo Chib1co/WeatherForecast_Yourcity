@@ -107,14 +107,18 @@ $( document ).ready(function() {
 for (let i = 0; i < response.list.length; i++) {
 if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   
+  let fiveDaysWeather = $("<div>");
+
+  console.log(response.list[i].weather[0].description)
+  let eachDayDescription = $("<h1>")
+  eachDayDescription.text(response.list[i].weather[0].description);
+  fiveDaysWeather.append(eachDayDescription);
+   
   console.log(response.list[i].dt_txt);
   let eachDayDate = $("<p>");
   eachDayDate.text(response.list[i].dt_txt);
   console.log(eachDayDate);
 
-  console.log(response.list[i].weather[0].description)
-  let eachDayDescription = $("<h1>")
-  eachDayDescription.text(response.list[i].weather[0].description);
 
   let eachDayTemp = $("<p>")
   eachDayTemp.text(response.list[i].main.temp -273.15);
@@ -122,7 +126,7 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   let eachDayHumidity = $("<p>")
   eachDayHumidity.text(response.list[i].main.humidity);
 
-
+ 
 
   let eachDayWeather = $(`<div>
   <h1> The weather is ${eachDayDescription}. </h1>
