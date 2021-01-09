@@ -47,18 +47,25 @@ $( document ).ready(function() {
    $('.city-list').append(ul);
  }//generateCityList close
 
-//  function createWeatherIcon() {
+function createWeatherIcon() {
+  let queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response){
+      console.log(response);
 
-// 　for (let i = 0; i < response.list.length; i++) {
-//   if (response.list[i].dt_txt.indexOf("09:00:00") !== -1 && 
-//   response.list[i].weather[0].description.indexOf("clear sky")
-//     let clearSky = $("<img>");
-//     clearSky.attr("src", " http://openweathermap.org/img/wn/01d.png.png");
-//     clearSky.attr("alt", "Clear sky");
-//     cityCurrent.append(clearSky);
-//   };
-//  };
-// };
+
+　for (let i = 0; i < response.list.length; i++) {
+  if (response.list[i].dt_txt.indexOf("09:00:00") !== -1 && response.list[i].weather[0].description.indexOf("clear sky")){
+    let clearSky = $("<img>");
+    clearSky.attr("src", " http://openweathermap.org/img/wn/01d.png.png");
+    clearSky.attr("alt", "Clear sky");
+    cityCurrent.append(clearSky);
+  };
+ };
+});
+};
 
 let cityCurrent = $("<div>");
  function searchWeather(cityName){
@@ -82,7 +89,7 @@ let cityCurrent = $("<div>");
   cityCurrent.append(placeName);
   //$(".city-info").append(nameOfCity);
 
-  //createWeatherIcon()
+  createWeatherIcon()
 
   let date   = new Date();
     console.log(date)
