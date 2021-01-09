@@ -47,9 +47,23 @@ $( document ).ready(function() {
    $('.city-list').append(ul);
  }//generateCityList close
 
+//  function createWeatherIcon() {
+
+// 　for (let i = 0; i < response.list.length; i++) {
+//   if (response.list[i].dt_txt.indexOf("09:00:00") !== -1 && 
+//   response.list[i].weather[0].description.indexOf("clear sky")
+//     let clearSky = $("<img>");
+//     clearSky.attr("src", " http://openweathermap.org/img/wn/01d.png.png");
+//     clearSky.attr("alt", "Clear sky");
+//     cityCurrent.append(clearSky);
+//   };
+//  };
+// };
+
+let cityCurrent = $("<div>");
  function searchWeather(cityName){
   let queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
-  let cityCurrent = $("<div>");
+  // let cityCurrent = $("<div>");
 
   // Make the AJAX request to the API - GETs the JSON data at the queryURL.
   // The data then gets passed as an argument to the updatePage function
@@ -67,6 +81,8 @@ $( document ).ready(function() {
   //nameOfCity.text(placeName); 
   cityCurrent.append(placeName);
   //$(".city-info").append(nameOfCity);
+
+  //createWeatherIcon()
 
   let date   = new Date();
     console.log(date)
@@ -136,13 +152,13 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
 
   console.log(response.list[i].weather[0].description)
   let eachDayDescription = $("<p>")
-  eachDayDescription.text("Weather: " + response.list[i].weather[0].description);
+  eachDayDescription.text(response.list[i].weather[0].description);
   fiveDaysWeather.append(eachDayDescription);
 
 
   let eachDayTemp = $("<p>")
   let eachDayTempC = response.list[i].main.temp -273.15
-  eachDayTemp.text("Tempurature: " + eachDayTempC.toFixed(2));
+  eachDayTemp.text("Temp: " + eachDayTempC.toFixed(2));
   //eachDayTemp.text(response.list[i].main.temp -273.15);
   fiveDaysWeather.append(eachDayTemp);
 
@@ -202,4 +218,4 @@ $(".search-city").on("click", function(event) {
 
 
 
-});//document ready close
+});//document ready 
