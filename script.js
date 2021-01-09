@@ -61,18 +61,7 @@ $( document ).ready(function() {
   }).then(function(response){
       console.log(response);
 
-
-        // 　for (let i = 0; i < response.list.length; i++) {
-        //   if (response.list[i].dt_txt.indexOf("09:00:00") !== -1 && response.list[i].weather[0].description.indexOf("clear sky")){
-        //     let clearSky = $("<img>");
-        //     clearSky.attr("src", " http://openweathermap.org/img/wn/01d@png");
-        //     clearSky.attr("alt", "Clear sky");
-        //     cityCurrent.append(clearSky);
-        //   };
-  //       //  };
-
-
- 
+ console.log(response.list[1].dt_txt)
   //let nameOfCity = $("<div>");
   //nameOfCity.attr('class', 'nameOfCity');
   let placeName = $("<h3>");
@@ -88,12 +77,12 @@ $( document ).ready(function() {
   let dateOfCity = date.toLocaleDateString("en-AU");
   cityCurrent.append(" (" + dateOfCity + ")");
 
- let currentWeather = response.list[3].weather[0].description;
+ let currentWeather = response.list[1].weather[0].description;
    console.log(currentWeather);
   cityCurrent.append(currentWeather);
 
   let weatherIcon =  $("<img>");
-  let iconcode = response.list[3].weather[0].icon;
+  let iconcode = response.list[1].weather[0].icon;
   console.log(iconcode)
   let iconurl =  "http://openweathermap.org/img/w/" + iconcode + ".png";
   weatherIcon.attr("src", iconurl);
@@ -101,16 +90,16 @@ $( document ).ready(function() {
   cityCurrent.append(weatherIcon)
   
 
-  let cityTemp = response.list[3].main.temp -273.15;
+  let cityTemp = response.list[1].main.temp -273.15;
    cityTempC = cityTemp.toFixed(2)
    console.log(cityTempC);
   cityCurrent.append(createDiv('Current Tempurature(C): ' + cityTempC));
 
-  let cityWind = response.list[3].wind.speed;
+  let cityWind = response.list[1].wind.speed;
    console.log(cityWind);
   cityCurrent.append(createDiv('Current Wind :' + cityWind + ' km/h'));
 
-  let cityHumidity = response.list[3].main.humidity;
+  let cityHumidity = response.list[1].main.humidity;
    console.log(cityHumidity);
   cityCurrent.append(createDiv('Current Humidity:' + cityHumidity + ' %'));
 
