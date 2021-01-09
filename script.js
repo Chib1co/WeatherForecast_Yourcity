@@ -47,30 +47,11 @@ $( document ).ready(function() {
    $('.city-list').append(ul);
  }//generateCityList close
 
-function createWeatherIcon() {
-  let queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response){
-      console.log(response);
 
-
-　for (let i = 0; i < response.list.length; i++) {
-  if (response.list[i].dt_txt.indexOf("09:00:00") !== -1 && response.list[i].weather[0].description.indexOf("clear sky")){
-    let clearSky = $("<img>");
-    clearSky.attr("src", " http://openweathermap.org/img/wn/01d.png.png");
-    clearSky.attr("alt", "Clear sky");
-    cityCurrent.append(clearSky);
-  };
- };
-});
-};
-
-let cityCurrent = $("<div>");
+// let cityCurrent = $("<div>");
  function searchWeather(cityName){
   let queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
-  // let cityCurrent = $("<div>");
+  let cityCurrent = $("<div>");
 
   // Make the AJAX request to the API - GETs the JSON data at the queryURL.
   // The data then gets passed as an argument to the updatePage function
@@ -79,6 +60,17 @@ let cityCurrent = $("<div>");
     method: "GET"
   }).then(function(response){
       console.log(response);
+
+
+        // 　for (let i = 0; i < response.list.length; i++) {
+        //   if (response.list[i].dt_txt.indexOf("09:00:00") !== -1 && response.list[i].weather[0].description.indexOf("clear sky")){
+        //     let clearSky = $("<img>");
+        //     clearSky.attr("src", " http://openweathermap.org/img/wn/01d@png");
+        //     clearSky.attr("alt", "Clear sky");
+        //     cityCurrent.append(clearSky);
+        //   };
+  //       //  };
+
 
  
   //let nameOfCity = $("<div>");
@@ -89,7 +81,7 @@ let cityCurrent = $("<div>");
   cityCurrent.append(placeName);
   //$(".city-info").append(nameOfCity);
 
-  createWeatherIcon()
+
 
   let date   = new Date();
     console.log(date)
@@ -99,6 +91,15 @@ let cityCurrent = $("<div>");
  let currentWeather = response.list[3].weather[0].description;
    console.log(currentWeather);
   cityCurrent.append(currentWeather);
+
+  let weatherIcon =  $("<img>");
+  let iconcode = response.list[3].weather[0].icon;
+  console.log(iconcode)
+  let iconurl =  "http://openweathermap.org/img/w/" + iconcode + ".png";
+  weatherIcon.attr("src", iconurl);
+  weatherIcon.attr("alt", "weather-icon");
+  cityCurrent.append(weatherIcon)
+  
 
   let cityTemp = response.list[3].main.temp -273.15;
    cityTempC = cityTemp.toFixed(2)
@@ -144,6 +145,8 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   fiveDaysWeather.attr("class", "card");
   fiveDaysWeather.attr("style", "width:6rem");
 
+  
+
  let eachDayDate = $("<h4>");
  eachDayDate.text(response.list[i].dt_txt);
  fiveDaysWeather.append(eachDayDate);
@@ -161,6 +164,15 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   let eachDayDescription = $("<p>")
   eachDayDescription.text(response.list[i].weather[0].description);
   fiveDaysWeather.append(eachDayDescription);
+
+
+  let weatherIconEach =  $("<img>");
+  let iconcodeFiveDays = response.list[i].weather[0].icon;
+  // console.log(iconcode)
+  let iconurlFive =  "http://openweathermap.org/img/w/" + iconcodeFiveDays+ ".png";
+  weatherIconEach.attr("src", iconurlFive);
+  weatherIconEach.attr("alt", "weather-icon");
+  fiveDaysWeather.append(weatherIconEach);
 
 
   let eachDayTemp = $("<p>")
