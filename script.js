@@ -118,9 +118,9 @@ $( document ).ready(function() {
   }).then(function(response){
       console.log(response);
   
-$("#5daysweather").text("");
+$("#fivedaysweather").text("");
 
-let fiveDays = $("<h3>");
+let fiveDays = $("<div>");
 fiveDays.attr("class", "titleFiveDays")
 fiveDays.text("5 Days Forecast");
 $(".weather-forecast").append(fiveDays);
@@ -136,9 +136,12 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
 
   
 
- let eachDayDate = $("<h4>");
- eachDayDate.text(response.list[i].dt_txt);
- fiveDaysWeather.append(eachDayDate);
+ let eachDayDate = $("<h5>");
+ let eachDateSlice = eachDayDate.text(response.list[i].dt_txt);
+ console.log(eachDayDate);
+ eachDateSlice.slice(6, 10);
+ console.log(eachDateSlice);
+ fiveDaysWeather.append(eachDateSlice);
 
 
 //  let nextDate= new Date();
@@ -166,7 +169,7 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
 
   let eachDayTemp = $("<p>")
   let eachDayTempC = response.list[i].main.temp -273.15
-  eachDayTemp.text("Temp: " + eachDayTempC.toFixed(2));
+  eachDayTemp.text("Temp: " + eachDayTempC.toFixed(2) + "\xB0C");
   //eachDayTemp.text(response.list[i].main.temp -273.15);
   fiveDaysWeather.append(eachDayTemp);
 
