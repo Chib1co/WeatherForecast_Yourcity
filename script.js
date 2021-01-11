@@ -47,6 +47,12 @@ $( document ).ready(function() {
    $('.city-list').append(ul);
  }//generateCityList close
 
+//  function addDays(date, days) {
+//   var result = new Date(date);
+//   result.setDate(result.getDate() + days);
+//   return result;
+// }//addDays function
+
 
 // let cityCurrent = $("<div>");
  function searchWeather(cityName){
@@ -93,15 +99,15 @@ $( document ).ready(function() {
   let cityTemp = response.list[1].main.temp -273.15;
    cityTempC = cityTemp.toFixed(2)
    console.log(cityTempC);
-  cityCurrent.append(createDiv('Current Tempurature(C): ' + cityTempC));
+  cityCurrent.append(createDiv('Current Tempurature(C): ' + cityTempC  + "\xB0C"));
 
   let cityWind = response.list[1].wind.speed;
    console.log(cityWind);
-  cityCurrent.append(createDiv('Current Wind :' + cityWind + ' km/h'));
+  cityCurrent.append(createDiv('Current Wind: ' + cityWind + ' km/h'));
 
   let cityHumidity = response.list[1].main.humidity;
    console.log(cityHumidity);
-  cityCurrent.append(createDiv('Current Humidity:' + cityHumidity + ' %'));
+  cityCurrent.append(createDiv('Current Humidity: ' + cityHumidity + ' %'));
 
   //   UX index
   // let cityHumidity = response.list[3].main.humidity;
@@ -125,7 +131,6 @@ fiveDays.attr("class", "titleFiveDays")
 fiveDays.text("5 Days Forecast");
 $(".weather-forecast").append(fiveDays);
 
-
 for (let i = 0; i < response.list.length; i++) {
 if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   
@@ -136,20 +141,22 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
 
   
 
- let eachDayDate = $("<h5>");
- let eachDateSlice = eachDayDate.text(response.list[i].dt_txt);
- console.log(eachDayDate);
- eachDateSlice.slice(6, 10);
- console.log(eachDateSlice);
- fiveDaysWeather.append(eachDateSlice);
+let eachDayDate = $("<h5>");
+//  let eachDateSlice = eachDayDate.text(response.list[i].dt_txt);
+//  console.log(eachDayDate);
+//  eachDateSlice.slice(6, 10);
+//  console.log(eachDateSlice);
+//  fiveDaysWeather.append(eachDateSlice);
 
 
-//  let nextDate= new Date();
-//  console.log(nextDate)
-//  nextDate.setDate( nextDate.getDate() +1);
-//  let nextDateAppear = nextDate.toLocaleDateString("en-AU");
-//  eachDayDate.text(nextDateAppear);
-//   fiveDaysWeather.append(eachDayDate)
+ let nextDate= new Date();
+ let numebrOfDayToAdd = 0;
+ //let dayAdded = numebrOfDayToAdd++;
+ //console.log(dayAdded)
+ nextDate.setDate( nextDate.getDate() + i);
+ let nextDateAppear = nextDate.toLocaleDateString("en-AU");
+ eachDayDate.text(nextDateAppear);
+  fiveDaysWeather.append(eachDayDate)
 
 
   console.log(response.list[i].weather[0].description)
@@ -174,7 +181,7 @@ if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
   fiveDaysWeather.append(eachDayTemp);
 
   let eachDayHumidity = $("<p>")
-  eachDayHumidity.text("Humidity: " +response.list[i].main.humidity);
+  eachDayHumidity.text("Humidity: " +response.list[i].main.humidity + "%");
   fiveDaysWeather.append( eachDayHumidity);
 
  
