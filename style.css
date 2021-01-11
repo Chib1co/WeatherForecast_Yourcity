@@ -40,10 +40,16 @@ body{
 }
 
 .city-info{
+    margin-top: 20px;
     border: ridge;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.weatherItems{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dateOfcity {
@@ -57,7 +63,7 @@ body{
 
  .card{
      margin-right: 5px;
-     font-size: 12px;
+     font-size: 14px;
      background-color: skyblue;
      
  }
@@ -72,23 +78,21 @@ body{
 
  @media only screen and (max-width: 760px) {
     body {
-      background-color: lightblue;
+      font-size: 12px;
     }
     .city-search{
         width: auto;
-        display: flex;
         align-items: center;
         text-align: center;
        
     }
     .city-list{
+        font-size: 14px;
         width: auto;
-        display: flex;
         align-items: center;
     }
     .fiveDaysCard{
         flex-wrap: nowrap;
-        display: flex;
 
     }
 
@@ -99,5 +103,14 @@ body{
         margin-bottom: 10px;
         width: auto;
       }
+      .cityname {
+          width: 80px
+      }
+
+      /* .weatherItems{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    } */
       
   }
