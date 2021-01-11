@@ -2,6 +2,9 @@ $( document ).ready(function() {
     console.log( "ready!" );
 
   generateCityList();
+  document.querySelector('.city-info').style.display = "none";
+
+
 
  function addingCities(){
     let citynames = $(".cityname");
@@ -47,16 +50,11 @@ $( document ).ready(function() {
    $('.city-list').append(ul);
  }//generateCityList close
 
-//  function addDays(date, days) {
-//   var result = new Date(date);
-//   result.setDate(result.getDate() + days);
-//   return result;
-// }//addDays function
 
 
-// let cityCurrent = $("<div>");
  function searchWeather(cityName){
-  let queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
+  document.querySelector('.city-info').style.display = "block";
+  let queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
   let cityCurrent = $("<div>");
 
   // Make the AJAX request to the API - GETs the JSON data at the queryURL.
@@ -67,28 +65,23 @@ $( document ).ready(function() {
   }).then(function(response){
       console.log(response);
 
- console.log(response.list[1].dt_txt)
-  //let nameOfCity = $("<div>");
-  //nameOfCity.attr('class', 'nameOfCity');
+ console.log(response.dt_txt)
   let placeName = $("<h3>");
-  placeName.text(response.city.name);
-  //nameOfCity.text(placeName); 
+  placeName.text(response.name);
   cityCurrent.append(placeName);
-  //$(".city-info").append(nameOfCity);
-
-
 
   let date   = new Date();
     console.log(date)
   let dateOfCity = date.toLocaleDateString("en-AU");
   cityCurrent.append(" (" + dateOfCity + ")");
+  // dateOfCity.attr("class", "dateOfcity");
 
- let currentWeather = response.list[1].weather[0].description;
-   console.log(currentWeather);
-  cityCurrent.append(currentWeather);
+//  let currentWeather = response.weather[0].description;
+//    console.log(currentWeather);
+//   cityCurrent.append(currentWeather);
 
   let weatherIcon =  $("<img>");
-  let iconcode = response.list[1].weather[0].icon;
+  let iconcode = response.weather[0].icon;
   console.log(iconcode)
   let iconurl =  "http://openweathermap.org/img/w/" + iconcode + ".png";
   weatherIcon.attr("src", iconurl);
@@ -96,30 +89,29 @@ $( document ).ready(function() {
   cityCurrent.append(weatherIcon)
   
 
-  let cityTemp = response.list[1].main.temp -273.15;
+  let cityTemp = response.main.temp -273.15;
    cityTempC = cityTemp.toFixed(2)
    console.log(cityTempC);
   cityCurrent.append(createDiv('Current Tempurature(C): ' + cityTempC  + "\xB0C"));
 
-  let cityWind = response.list[1].wind.speed;
+  let cityWind = response.wind.speed;
    console.log(cityWind);
-  cityCurrent.append(createDiv('Current Wind: ' + cityWind + ' km/h'));
+  cityCurrent.append(createDiv('Current Wind Speed: ' + cityWind + ' km/h'));
 
-  let cityHumidity = response.list[1].main.humidity;
+  let cityHumidity = response.main.humidity;
    console.log(cityHumidity);
   cityCurrent.append(createDiv('Current Humidity: ' + cityHumidity + ' %'));
 
   //   UX index
-  // let cityHumidity = response.list[3].main.humidity;
-  // console.log(cityHumidity);
-  // cityCurrent.append('Current Humidity' + cityHumidity + ' %');
+
   resetDashboard();
   $(".city-info").append(cityCurrent);
 }); //ajax close
 
+let fiveDaysURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
 // 5 days forecatse
   $.ajax({
-    url: queryURL,
+    url: fiveDaysURL,
     method: "GET"
   }).then(function(response){
       console.log(response);
@@ -131,43 +123,39 @@ fiveDays.attr("class", "titleFiveDays")
 fiveDays.text("5 Days Forecast");
 $(".weather-forecast").append(fiveDays);
 
-for (let i = 0; i < response.list.length; i++) {
-if (response.list[i].dt_txt.indexOf("09:00:00") !== -1){
-  
-  let fiveDaysWeather = $("<div>");
-  fiveDaysWeather.attr("class", "fiveDaysWeather");
-  fiveDaysWeather.attr("class", "card");
-  fiveDaysWeather.attr("style", "width:6rem");
+const daily = response.list.filter(function(weather, index){
+  return index % 8 === 0
+})
 
+
+for (let i = 0; i < daily.length; i++) {
+  const weatherItem = daily[i];
+  let fiveDaysWeather = $("<div>");
+  fiveDaysWeather.attr("class", "fiveDaysWeather card");
+  // fiveDaysWeather.attr("class", "card");
+  fiveDaysWeather.attr("style", "width:6rem");
   
 
 let eachDayDate = $("<h5>");
-//  let eachDateSlice = eachDayDate.text(response.list[i].dt_txt);
-//  console.log(eachDayDate);
-//  eachDateSlice.slice(6, 10);
-//  console.log(eachDateSlice);
-//  fiveDaysWeather.append(eachDateSlice);
+eachDayDate.attr("class", "eachdate")
+const datetime = luxon.DateTime.fromSeconds(weatherItem.dt);
 
-
- let nextDate= new Date();
  let numebrOfDayToAdd = 0;
- //let dayAdded = numebrOfDayToAdd++;
- //console.log(dayAdded)
- nextDate.setDate( nextDate.getDate() + i);
- let nextDateAppear = nextDate.toLocaleDateString("en-AU");
- eachDayDate.text(nextDateAppear);
+ eachDayDate.text(datetime.toFormat('dd LLL yyyy'));
   fiveDaysWeather.append(eachDayDate)
 
 
-  console.log(response.list[i].weather[0].description)
-  let eachDayDescription = $("<p>")
-  eachDayDescription.text(response.list[i].weather[0].description);
-  fiveDaysWeather.append(eachDayDescription);
+  // console.log(response.list[i].weather[0].description)
+  // let eachDayDescription = $("<p>")
+  // eachDayDescription.text(response.list[i].weather[0].description);
+  // fiveDaysWeather.append(eachDayDescription);
 
 
   let weatherIconEach =  $("<img>");
-  let iconcodeFiveDays = response.list[i].weather[0].icon;
-  // console.log(iconcode)
+  weatherIconEach.attr("width", "50px")
+  weatherIconEach.attr("class", 'mx-auto')
+  let iconcodeFiveDays = weatherItem.weather[0].icon;
+  console.log(weatherItem)
   let iconurlFive =  "http://openweathermap.org/img/w/" + iconcodeFiveDays+ ".png";
   weatherIconEach.attr("src", iconurlFive);
   weatherIconEach.attr("alt", "weather-icon");
@@ -175,13 +163,12 @@ let eachDayDate = $("<h5>");
 
 
   let eachDayTemp = $("<p>")
-  let eachDayTempC = response.list[i].main.temp -273.15
+  let eachDayTempC = weatherItem.main.temp -273.15
   eachDayTemp.text("Temp: " + eachDayTempC.toFixed(2) + "\xB0C");
-  //eachDayTemp.text(response.list[i].main.temp -273.15);
   fiveDaysWeather.append(eachDayTemp);
 
   let eachDayHumidity = $("<p>")
-  eachDayHumidity.text("Humidity: " +response.list[i].main.humidity + "%");
+  eachDayHumidity.text("Humidity: " +weatherItem.main.humidity + "%");
   fiveDaysWeather.append( eachDayHumidity);
 
  
@@ -197,7 +184,7 @@ let eachDayDate = $("<h5>");
        
 }
   
-}
+
 
 
 
@@ -211,7 +198,7 @@ $(".search-city").on("click", function(event) {
     // (in addition to clicks). Prevents the page from reloading on form submit.
     event.preventDefault();
     
-    // let APIkey = '6241153efb39f75fa72c3541aa78f172';
+    
     let cityName = $(".cityname").val()
 
     searchWeather(cityName);

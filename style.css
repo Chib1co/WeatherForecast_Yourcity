@@ -46,6 +46,10 @@ body{
     padding-bottom: 10px;
 }
 
+.dateOfcity {
+    font-size: 28px;
+}
+
  /* #fivedaysweather{
      margin-top: 10px;
     
@@ -62,9 +66,38 @@ body{
      font-size: 30px;
  }
 
-/* .nameOfCity{
-    font-size: 28px;
-    font-weight: 100;
-    color: red;
+ .eachdate{
+     font-size: 18px;
+ }
 
-} */
+ @media only screen and (max-width: 760px) {
+    body {
+      background-color: lightblue;
+    }
+    .city-search{
+        width: auto;
+        display: flex;
+        align-items: center;
+        text-align: center;
+       
+    }
+    .city-list{
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
+    .fiveDaysCard{
+        flex-wrap: nowrap;
+        display: flex;
+
+    }
+
+    .fiveDaysWeather {
+        flex-basis: 200px;
+        flex-shrink: 1;
+        flex-grow: 1;
+        margin-bottom: 10px;
+        width: auto;
+      }
+      
+  }
