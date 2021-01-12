@@ -67,13 +67,14 @@ $( document ).ready(function() {
 
  console.log(response.dt_txt)
   let placeName = $("<h3>");
+  placeName.attr("text-align", "center")
   placeName.text(response.name);
   cityCurrent.append(placeName);
 
   let date   = new Date();
     console.log(date)
   let dateOfCity = date.toLocaleDateString("en-AU");
-  cityCurrent.append(" (" + dateOfCity + ")");
+  cityCurrent.append( dateOfCity);
   // dateOfCity.attr("class", "dateOfcity");
 
 //  let currentWeather = response.weather[0].description;
@@ -124,7 +125,7 @@ fiveDays.text("5 Days Forecast");
 $(".weather-forecast").append(fiveDays);
 
 const daily = response.list.filter(function(weather, index){
-  return index % 8 === 0
+  return index % 8 === 7
 })
 
 

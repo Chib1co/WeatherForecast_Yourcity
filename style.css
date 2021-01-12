@@ -1,5 +1,8 @@
 body{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: #42a4c1;
+    color: white;
+
 }
     
     
@@ -17,6 +20,10 @@ body{
     
  }
 
+ /* .city-search{
+     width: 450px;
+ } */
+
 .navbar-brand{
   color: blanchedalmond;
   font-size: 28px;
@@ -27,8 +34,10 @@ body{
     padding-right: 20px;
     padding-top: 20px;
     float: left;
+    align-items: center;
     border: ridge;
     font-size: 22px;
+    width: 210px;
 }
 
 .city{
@@ -45,8 +54,11 @@ body{
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 20px;
 }
-
+/* #fivedaysForecast{
+    text-align: center;
+} */
 .weatherItems{
     margin-left: auto;
     margin-right: auto;
