@@ -9,12 +9,12 @@ $( document ).ready(function() {
  function addingCities(){
     let citynames = $(".cityname");
     let cityList = JSON.parse(localStorage.getItem('city'))|| [];
- }//addingCities close
+ };//addingCities close
 
  function resetDashboard(){
    $(".city-info").text("");
    $(".weather-forecast").text("");
- }//resetDashboard close
+ };//resetDashboard close
 
  function createDiv(content){
   const div  = document.createElement('div');
@@ -37,14 +37,14 @@ $( document ).ready(function() {
      li.text(city);
      li.attr('class', 'cursor-pointer');
      ul.append(li);
-   }
+   };
 
    ul.on('click', function(event){
      
      const city = event.target.textContent;
      searchWeather(city);
 
-   })
+   });
    // put these li to the dom
    $('.city-list').text('');
    $('.city-list').append(ul);
@@ -146,7 +146,7 @@ $(".weather-forecast").append(fiveDays);
 
 const daily = response.list.filter(function(weather, index){
   return index % 8 === 7
-})
+});
 
 
 for (let i = 0; i < daily.length; i++) {
@@ -162,55 +162,36 @@ const datetime = luxon.DateTime.fromSeconds(weatherItem.dt);
 
  let numebrOfDayToAdd = 0;
  eachDayDate.text(datetime.toFormat('dd LLL yyyy'));
-  fiveDaysWeather.append(eachDayDate)
-
-
-  // console.log(response.list[i].weather[0].description)
-  // let eachDayDescription = $("<p>")
-  // eachDayDescription.text(response.list[i].weather[0].description);
-  // fiveDaysWeather.append(eachDayDescription);
-
+  fiveDaysWeather.append(eachDayDate);
 
   let weatherIconEach =  $("<img>");
-  weatherIconEach.attr("width", "50px")
-  weatherIconEach.attr("class", 'mx-auto')
+  weatherIconEach.attr("width", "50px");
+  weatherIconEach.attr("class", 'mx-auto');
   let iconcodeFiveDays = weatherItem.weather[0].icon;
-  console.log(weatherItem)
+  console.log(weatherItem);
   let iconurlFive =  "http://openweathermap.org/img/w/" + iconcodeFiveDays+ ".png";
   weatherIconEach.attr("src", iconurlFive);
   weatherIconEach.attr("alt", "weather-icon");
   fiveDaysWeather.append(weatherIconEach);
 
 
-  let eachDayTemp = $("<p>")
-  let eachDayTempC = weatherItem.main.temp -273.15
+  let eachDayTemp = $("<p>");
+  let eachDayTempC = weatherItem.main.temp -273.15;
   eachDayTemp.text("Temp: " + eachDayTempC.toFixed(2) + "\xB0C");
   fiveDaysWeather.append(eachDayTemp);
 
-  let eachDayHumidity = $("<p>")
+  let eachDayHumidity = $("<p>");
   eachDayHumidity.text("Humidity: " +weatherItem.main.humidity + "%");
   fiveDaysWeather.append( eachDayHumidity);
 
- 
-
-  // let eachDayWeather = $(`<div>
-  // <h1> The weather is ${eachDayDescription}. </h1>
-  // <p> The temperature is ${eachDayTemp}. </p>
-  // <p> The date is ${eachDayDate}</p>
-  // <p> The humidity is ${eachDayHumidity}</p>
-  // </div>`);
   
   $("#fivedaysweather").append(fiveDaysWeather);
        
-}
+};
   
 
-
-
-
-
 }); //ajax2 close
- }//serchWeather close
+ };//serchWeather close
 
 
 // .on("click") function associated with the Search Button
@@ -236,7 +217,7 @@ $(".search-city").on("click", function(event) {
     localStorage.setItem("cities", JSON.stringify(chosenCity));
 
 
-    generateCityList()
+    generateCityList();
 
 
   }); //onclick close
