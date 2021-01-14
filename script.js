@@ -133,8 +133,7 @@ for (let i = 0; i < daily.length; i++) {
   const weatherItem = daily[i];
   let fiveDaysWeather = $("<div>");
   fiveDaysWeather.attr("class", "fiveDaysWeather card");
-  // fiveDaysWeather.attr("class", "card");
-  fiveDaysWeather.attr("style", "width:6rem");
+  fiveDaysWeather.attr("style", "width:max-content");
   
 
 let eachDayDate = $("<h5>");

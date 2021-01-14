@@ -42,6 +42,8 @@ body{
 
 .city{
     float: right;
+    width: max-content;
+    background-color: teal;
 }
 .cursor-pointer{
     cursor: pointer;
@@ -55,6 +57,7 @@ body{
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 20px;
+    /* width: 510px; */
 }
 /* #fivedaysForecast{
     text-align: center;
@@ -76,12 +79,17 @@ body{
  .card{
      margin-right: 5px;
      font-size: 14px;
-     background-color: skyblue;
+     background-color:#036086;
+     border-style: none;
+     padding-left: 3px;
+     padding-right: 3px;
      
  }
  .titleFiveDays{
      margin-top: 20px;
      font-size: 30px;
+     margin-bottom: 10px;
+     
  }
 
  .eachdate{
