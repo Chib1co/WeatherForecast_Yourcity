@@ -56,6 +56,7 @@ $( document ).ready(function() {
   document.querySelector('.city-info').style.display = "block";
   let queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
   let cityCurrent = $("<div>");
+  
 
   // Make the AJAX request to the API - GETs the JSON data at the queryURL.
   // The data then gets passed as an argument to the updatePage function
@@ -99,7 +100,20 @@ $( document ).ready(function() {
    console.log(cityHumidity);
   cityCurrent.append(createDiv('Current Humidity: ' + cityHumidity + ' %'));
 
+  let lat = response.coord.lat
+  let lon = response.coord.lon
+  let queryURLUv = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" +lon + "&appid=6241153efb39f75fa72c3541aa78f172"
+  
   //   UX index
+  $.ajax({
+    url: queryURLUv,
+    method: "GET"
+  }).then(function(response){
+      console.log(response);
+
+  let uvIndex = response.value
+  cityCurrent.append("UV: " + uvIndex);
+  });
 
   resetDashboard();
   $(".city-info").append(cityCurrent);
