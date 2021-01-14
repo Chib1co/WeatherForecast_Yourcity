@@ -113,6 +113,13 @@ $( document ).ready(function() {
 
   let uvIndex = response.value
   cityCurrent.append("UV: " + uvIndex);
+  if(uvIndex <= 2){
+  uvIndex.attr("class", "low");
+  }else if (uvIndex >= 5){
+    uvIndex.attr("class", "high");
+  } else{
+    uvIndex.attr("class", "moderate");
+  }
   });
 
   resetDashboard();
