@@ -54,7 +54,7 @@ $( document ).ready(function() {
 
  function searchWeather(cityName){
   document.querySelector('.city-info').style.display = "block";
-  let queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
+  let queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=6241153efb39f75fa72c3541aa78f172';
   let cityCurrent = $("<div>");
   
 
@@ -81,7 +81,7 @@ $( document ).ready(function() {
   let weatherIcon =  $("<img>");
   let iconcode = response.weather[0].icon;
   console.log(iconcode)
-  let iconurl =  "http://openweathermap.org/img/w/" + iconcode + ".png";
+  let iconurl =  "https://openweathermap.org/img/w/" + iconcode + ".png";
   weatherIcon.attr("src", iconurl);
   weatherIcon.attr("alt", "weather-icon");
   cityCurrent.append(weatherIcon)
@@ -102,7 +102,7 @@ $( document ).ready(function() {
 
   let lat = response.coord.lat
   let lon = response.coord.lon
-  let queryURLUv = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" +lon + "&appid=6241153efb39f75fa72c3541aa78f172"
+  let queryURLUv = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" +lon + "&appid=6241153efb39f75fa72c3541aa78f172"
   
   let uvEl = $("<div>");
   //   UX index
