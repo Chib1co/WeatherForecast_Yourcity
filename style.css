@@ -81,9 +81,13 @@ body{
      font-size: 14px;
      background-color:#036086;
      border-style: none;
-     padding-left: 3px;
-     padding-right: 3px;
+     /* padding-left: 3px;
+     padding-right: 3px; */
+     padding: 30px;
      
+ }
+ .card-weather{
+     width: max-content;
  }
  .titleFiveDays{
      margin-top: 20px;
