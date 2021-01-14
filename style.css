@@ -43,7 +43,7 @@ body{
 .city{
     float: right;
     width: max-content;
-    background-color: teal;
+  
 }
 .cursor-pointer{
     cursor: pointer;
