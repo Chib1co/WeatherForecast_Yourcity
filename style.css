@@ -20,9 +20,6 @@ body{
     
  }
 
- /* .city-search{
-     width: 450px;
- } */
 
 .navbar-brand{
   color: blanchedalmond;
@@ -57,11 +54,9 @@ body{
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 20px;
-    /* width: 510px; */
+  
 }
-/* #fivedaysForecast{
-    text-align: center;
-} */
+
 .weatherItems{
     margin-left: auto;
     margin-right: auto;
@@ -71,18 +66,11 @@ body{
     font-size: 28px;
 }
 
- /* #fivedaysweather{
-     margin-top: 10px;
-    
- } */
-
  .card{
      margin-right: 5px;
      font-size: 14px;
      background-color:#036086;
      border-style: none;
-     /* padding-left: 3px;
-     padding-right: 3px; */
      padding: 30px;
      
  }
@@ -131,10 +119,6 @@ body{
           width: 80px
       }
 
-      /* .weatherItems{
-        display: flex;
-        margin-left: auto;
-        margin-right: auto;
-    } */
+     
       
   }

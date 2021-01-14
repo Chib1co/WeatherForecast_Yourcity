@@ -75,11 +75,7 @@ $( document ).ready(function() {
     console.log(date)
   let dateOfCity = date.toLocaleDateString("en-AU");
   cityCurrent.append( dateOfCity);
-  // dateOfCity.attr("class", "dateOfcity");
 
-//  let currentWeather = response.weather[0].description;
-//    console.log(currentWeather);
-//   cityCurrent.append(currentWeather);
 
   let weatherIcon =  $("<img>");
   let iconcode = response.weather[0].icon;
