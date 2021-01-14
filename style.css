@@ -59,10 +59,17 @@ body{
 
 .low{
     background-color: green;
+    width: 100px;
 }
 
 .high{
     background-color: red;
+    width: 100px;
+}
+
+.moderate{
+    background-color: yellow;
+    width: 100px;
 }
 
 

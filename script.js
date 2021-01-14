@@ -104,6 +104,7 @@ $( document ).ready(function() {
   let lon = response.coord.lon
   let queryURLUv = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" +lon + "&appid=6241153efb39f75fa72c3541aa78f172"
   
+  let uvEl = $("<div>");
   //   UX index
   $.ajax({
     url: queryURLUv,
@@ -111,15 +112,17 @@ $( document ).ready(function() {
   }).then(function(response){
       console.log(response);
 
-  let uvIndex = response.value
-  cityCurrent.append("UV: " + uvIndex);
-  if(uvIndex <= 2){
+  
+  let uvIndex = $(`<div>UV: ${response.value}<div>`);
+ 
+  if(response.value < 3){
   uvIndex.attr("class", "low");
-  }else if (uvIndex >= 5){
+  }else if (response.value > 5){
     uvIndex.attr("class", "high");
   } else{
     uvIndex.attr("class", "moderate");
   }
+  cityCurrent.append(uvIndex);
   });
 
   resetDashboard();
